@@ -123,10 +123,10 @@ Le mécanisme comprend :
 
 ## Auteur
 
-Projet académique réalisé dans le cadre du module **Web Services JEE**.
+Atelier 3
 
 Université Abdelmalek Essaâdi  
 Faculté des Sciences et Techniques de Tanger  
 Département Génie Informatique
 
-**Année universitaire : 2025–2026**
+**Année universitaire : 2026–2027**
