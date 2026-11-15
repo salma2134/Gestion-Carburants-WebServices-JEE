@@ -1,0 +1,159 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+
+    <title>Gestion des carburants</title>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js">
+    </script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f4f7;
+            margin: 0;
+            padding: 40px;
+        }
+
+        .container {
+            width: 500px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px #ccc;
+        }
+
+        h1 {
+            text-align: center;
+            color: #243b55;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 7px;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 20px;
+            background: #243b55;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #141e30;
+        }
+
+        #resultat {
+            margin-top: 20px;
+            padding: 15px;
+            background: #eef2f5;
+            white-space: pre-line;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Gestion des carburants</h1>
+
+    <h3>Consulter les prix des carburants</h3>
+
+    <form id="formulaire">
+
+        <label>Nom de la station :</label>
+
+        <input type="text"
+               id="nomStation"
+               value="Station Afriquia"
+               required>
+
+        <label>Date :</label>
+
+        <input type="date"
+               id="date"
+               value="2026-11-14"
+               required>
+
+        <button type="submit">
+            Consulter les prix
+        </button>
+
+    </form>
+
+    <h3>Résultat :</h3>
+
+    <div id="resultat">
+        Les résultats apparaîtront ici.
+    </div>
+
+</div>
+
+<script>
+
+$(document).ready(function() {
+
+    $("#formulaire").submit(function(event) {
+
+        event.preventDefault();
+
+        var nomStation = $("#nomStation").val();
+        var date = $("#date").val();
+
+        $("#resultat").text("Chargement...");
+
+        $.ajax({
+
+            url: "http://localhost:8081/api/historiques/consulterPrix",
+
+            type: "GET",
+
+            data: {
+                nomStation: nomStation,
+                date: date
+            },
+
+            dataType: "text",
+
+            success: function(reponse) {
+
+                $("#resultat").text(reponse);
+
+            },
+
+            error: function(xhr) {
+
+                $("#resultat").text(
+                    "Erreur lors de l'appel Jersey. Statut HTTP : "
+                    + xhr.status
+                );
+
+            }
+
+        });
+
+    });
+
+});
+
+</script>
+
+</body>
+</html>
