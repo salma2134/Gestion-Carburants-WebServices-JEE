@@ -123,7 +123,7 @@ Le mécanisme comprend :
 
 ## Auteur
 
-Atelier 3
+Atelier 4
 
 Université Abdelmalek Essaâdi  
 Faculté des Sciences et Techniques de Tanger  
